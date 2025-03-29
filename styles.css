@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: default;
+    font-family: system-ui;
+    cursor: default !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+.box {
+    width: 200px;
+    height: 80px;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: white;
+    z-index: 1;
+    background-color: #111;
+}
+
+.box::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    z-index: -1;
+    background: conic-gradient(
+            from var(--angle),
+            red,
+            orangered,
+            tomato,
+            darkorange,
+            orange,
+            gold,
+            goldenrod,
+            yellow,
+            greenyellow,
+            chartreuse,
+            lime,
+            limegreen,
+            springgreen,
+            mediumspringgreen,
+            cyan,
+            deepskyblue,
+            dodgerblue,
+            cornflowerblue,
+            royalblue,
+            blue,
+            mediumblue,
+            indigo,
+            blueviolet,
+            violet,
+            mediumorchid,
+            orchid,
+            plum,
+            mediumvioletred,
+            palevioletred,
+            crimson,
+            red
+    );
+
+
+    border-radius: 23px;
+    padding: 3px;
+    -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotate {
+    to {
+        --angle: 360deg;
+    }
+}
+
+.box::before {
+    animation: rotate .5s linear infinite;
+}
+
+.copied {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #2afadf;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.copied.show {
+    opacity: 1;
+}
